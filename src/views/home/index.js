@@ -6,6 +6,7 @@ import {
   Button,
   Image,
   Badge,
+  useToast,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
@@ -13,10 +14,12 @@ import { useCallback, useEffect, useState } from "react";
 import usePinaPunks from "../../hooks/usePinaPunks";
 
 const Home = () => {
+  const [isMinting, setIsMinting] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
   const { active, account } = useWeb3React();
   const pinaPunks = usePinaPunks();
   const [availablePunks, setAvailablePunks] = useState(""); 
+  const toast = useToast();
 
   const getPinaPunksData = useCallback(async () => {
     if (pinaPunks) {
@@ -34,6 +37,40 @@ const Home = () => {
   useEffect(() => {
     getPinaPunksData();
   }, [getPinaPunksData]);
+
+  const mint = () => {
+    setIsMinting(true);
+
+    pinaPunks.methods
+      .mint()
+      .send({
+        from:account,
+        value:5e16,
+      })
+      .on("TransactionHash", (txHash) => {
+        toast({
+          title: "Transacction send",
+          description: txHash,
+          status: "info",
+        });
+      })
+      .on("receipt", () => {
+        setIsMinting(false);
+        toast({
+          title: "Transacction confirm",
+          description: "Oh yeah ",
+          status: "success",
+        });
+      })
+      .on("error", (error) => {
+        setIsMinting(false);
+        toast({
+          title: "Transaction failed",
+          description: error.message,
+          status: "error",
+        });
+      });
+  }; 
 
   return (
     <Stack
@@ -95,6 +132,8 @@ const Home = () => {
             bg={"green.400"}
             _hover={{ bg: "green.500" }}
             disabled={!pinaPunks}
+            onClick={mint}
+            isLoading={isMinting}
           >
             Obtén tu punk
           </Button>
