@@ -65,7 +65,7 @@ const Punks = () => {
               isInvalid={false}
               value={address ?? ""}
               onChange={handleAddressChange}
-              placeholder="Buscar por dirección"
+              placeholder="Search by address"
             />
             <InputRightElement width="5.5rem">
               <Button type="submit" h="1.75rem" size="sm">
@@ -74,7 +74,7 @@ const Punks = () => {
             </InputRightElement>
           </InputGroup>
           {submitted && !validAddress && (
-            <FormHelperText>Dirección inválida</FormHelperText>
+            <FormHelperText>Invalid address</FormHelperText>
           )}
         </FormControl>
       </form>

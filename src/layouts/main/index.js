@@ -58,9 +58,9 @@ import {
             />
             <HStack spacing={8} alignItems={"center"}>
               <Flex alignItems="center">
-                <Image src="./images/Logo.png" width="80px" />
-                <Heading size="md" color="purple" mt={0.2} ml={1}>
-                  Humans
+                <Image src="./images/Logo.png" width="200px" />
+                <Heading size="xl" color="#8042FE" mt={0.2} ml={1}>
+                2048
                 </Heading>
               </Flex>
               <HStack

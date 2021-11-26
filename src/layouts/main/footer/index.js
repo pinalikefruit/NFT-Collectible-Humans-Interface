@@ -10,7 +10,7 @@ import {
   const Footer = () => {
     return (
       <Box
-        bg={useColorModeValue("white", "gray.800")}
+        bg={useColorModeValue("#C2C2C2", "gray.800")}
         color={useColorModeValue("gray.700", "gray.200")}
       >
         <Box
@@ -28,15 +28,13 @@ import {
             align={{ base: "center", md: "center" }}
           >
             <Text>
-              © {new Date().getFullYear()} Made with curiosity
-              <Link ml={1} href="https://github.com/pinajmr/NFT-Collectible-Humans-interface">
-                Pina 
-              </Link>
+              <Text fontSize="md"> © {new Date().getFullYear()} Design made with passion by <Link ml={1} href="https://www.linkedin.com/in/sarahrappeneau/">
+                Sarah Rappeneau  </Link> </Text>
             </Text>
           </Container>
         </Box>
       </Box>
     );
-  };
+  };  
   
   export default Footer;

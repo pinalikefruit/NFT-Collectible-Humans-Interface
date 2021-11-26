@@ -38,8 +38,8 @@ import {
 
         if (!isAddress) {
           toast({
-            title: "Dirección inválida",
-            description: "La dirección no es una dirección de Ethereum",
+            title: "Invalid address",
+            description: "The address is not an Ethereum address",
             status: "error",
           });
           setTransfering(false);
@@ -54,7 +54,7 @@ import {
             })
             .on("transactionHash", (txHash) => {
               toast({
-                title: "Transacción enviada",
+                title: "Transaction sent",
                 description: txHash,
                 status: "info",
               });
@@ -62,8 +62,8 @@ import {
             .on("receipt", () => {
               setTransfering(false);
               toast({
-                title: "Transacción confirmada",
-                description: `El Hummans ahora pertenece a ${address}`,
+                title: "Transaction confirmed",
+                description: `The Hummans now belongs to ${address}`,
                 status: "success",
               });
               update();
@@ -93,10 +93,10 @@ import {
           <Button
           onClick={transfer}
           disabled={account !== punk.owner}
-          colorScheme="green"
+          colorScheme="gray"
           isLoading={transfering}
         >
-          {account !== punk.owner ? "No eres el dueño" : "Transferir"}
+          {account !== punk.owner ? "You are not the owner" : "to transfer"}
         </Button>
         </Stack>
         <Stack width="100%" spacing={5}>
@@ -104,13 +104,13 @@ import {
           <Text fontSize="xl">{punk.description}</Text>
           <Text fontWeight={600}>
             DNA:
-            <Tag ml={2} colorScheme="green">
+            <Tag ml={2} colorScheme="gray">
               {punk.dna}
             </Tag>
           </Text>
           <Text fontWeight={600}>
             Owner:
-            <Tag ml={2} colorScheme="green">
+            <Tag ml={2} colorScheme="gray">
               {punk.owner}
             </Tag>
           </Text>

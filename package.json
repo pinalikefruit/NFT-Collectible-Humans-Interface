@@ -1,5 +1,5 @@
 {
-  "name": "Humans 2048 - Interface",
+  "name": "HumansInterface",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
