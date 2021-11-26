@@ -15,17 +15,17 @@ import {
   import { useWeb3React } from "@web3-react/core";
   import RequestAccess from "../../components/request-access";
   import PunkCard from "../../components/punk-card";
-  import { usePlatziPunkData } from "../../hooks/usePinaPunksData";
+  import { useHumanData } from "../../hooks/useHumansData";
   import { useParams } from "react-router-dom";
   import Loading from "../../components/loading";
   import { useState } from "react";
-  import usePinaPunks from "../../hooks/usePinaPunks";
+  import useHumans from "../../hooks/useHumans";
   
   const Punk = () => {
     const { active, account, library } = useWeb3React();
     const { tokenId } = useParams();
-    const { loading, punk ,update } = usePlatziPunkData(tokenId);
-    const pinaPunks = usePinaPunks();
+    const { loading, punk ,update } = useHumanData(tokenId);
+    const humans = useHumans();
     const toast = useToast();
     const [transfering, setTransfering] = useState(false);
 
@@ -44,7 +44,7 @@ import {
           });
           setTransfering(false);
         } else {
-          pinaPunks.methods
+          humans.methods
             .safeTransferFrom(punk.owner, address, punk.tokenId)
             .send({
               from: account,
@@ -63,7 +63,7 @@ import {
               setTransfering(false);
               toast({
                 title: "Transacción confirmada",
-                description: `El punk ahora pertenece a ${address}`,
+                description: `El Hummans ahora pertenece a ${address}`,
                 status: "success",
               });
               update();

@@ -1,17 +1,17 @@
 import { useMemo } from 'react';
 import { useWeb3React } from "@web3-react/core";
-import PinaPunksArtifact from '../../config/web3/artifacts/PinaPunks';
+import HumansArtifact from '../../config/web3/artifacts/Humans';
 
-const { address, abi } = PinaPunksArtifact
+const { address, abi } = HumansArtifact
 
-const usePinaPunks = () => {
+const useHumans = () => {
     const { active, library, chainId } = useWeb3React();
 
-    const pinaPunks = useMemo(() => {
+    const humans = useMemo(() => {
         if(active) return new library.eth.Contract(abi, address[chainId]);
     },   [active, chainId, library?.eth?.Contract]);
 
-    return pinaPunks;
+    return humans;
 };
 
-export default usePinaPunks;
+export default useHumans;

@@ -25,8 +25,8 @@ function App() {
     <MainLayout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/punks" element={<Punks/>} />
-        <Route path="/punks/:tokenId" element={<Punk/>} />
+        <Route path="/humans" element={<Punks/>} />
+        <Route path="/humans/:tokenId" element={<Punk/>} />
       </Routes>
     </MainLayout>
     </>

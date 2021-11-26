@@ -11,41 +11,40 @@ import {
 import { Link } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import { useCallback, useEffect, useState } from "react";
-import usePinaPunks from "../../hooks/usePinaPunks";
+import useHumans from "../../hooks/useHumans";
 
 const Home = () => {
   const [isMinting, setIsMinting] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
   const { active, account } = useWeb3React();
-  const pinaPunks = usePinaPunks();
+  const humans = useHumans();
   const [availablePunks, setAvailablePunks] = useState(""); 
   const toast = useToast();
 
-  const getPinaPunksData = useCallback(async () => {
-    if (pinaPunks) {
-      const totalSupply = await pinaPunks.methods.totalSupply().call();
-      const maxSupply = await pinaPunks.methods.maxSupply().call();
-      const dnaPreview = await pinaPunks.methods
+  const getHumansData = useCallback(async () => {
+    if (humans) {
+      const totalSupply = await humans.methods.totalSupply().call();
+      const maxSupply = await humans.methods.maxSupply().call();
+      const dnaPreview = await humans.methods
         .deterministicPseudoRandomDNA(totalSupply, account)
         .call();
-      const image = await pinaPunks.methods.imageByDNA(dnaPreview).call();
+      const image = await humans.methods.imageByDNA(dnaPreview).call();
       setImageSrc(image);
       setAvailablePunks(maxSupply - totalSupply); 
     }
-  }, [pinaPunks, account]);
+  }, [humans, account]);
 
   useEffect(() => {
-    getPinaPunksData();
-  }, [getPinaPunksData]);
+    getHumansData();
+  }, [getHumansData]);
 
   const mint = () => {
     setIsMinting(true);
 
-    pinaPunks.methods
+    humans.methods
       .mint()
       .send({
         from:account,
-        value:5e16,
       })
       .on("TransactionHash", (txHash) => {
         toast({
@@ -117,7 +116,7 @@ const Home = () => {
           minteas en este momento
         </Text>
         <Text color={"green.600"}>
-          PinaPunks disponibles : {availablePunks}
+          Humans disponibles : {availablePunks}
         </Text>
         <Stack
           spacing={{ base: 4, sm: 6 }}
@@ -131,13 +130,13 @@ const Home = () => {
             colorScheme={"green"}
             bg={"green.400"}
             _hover={{ bg: "green.500" }}
-            disabled={!pinaPunks}
+            disabled={!humans}
             onClick={mint}
             isLoading={isMinting}
           >
-            Obtén tu punk
+            Obtén tu Humans
           </Button>
-          <Link to="/punks">
+          <Link to="/humans">
             <Button rounded={"full"} size={"lg"} fontWeight={"normal"} px={6}>
               Galería
             </Button>
@@ -170,7 +169,7 @@ const Home = () => {
               </Badge>
             </Flex>
             <Button
-              onClick={getPinaPunksData}
+              onClick={getHumansData}
               mt={4}
               size="xs"
               colorScheme="green"

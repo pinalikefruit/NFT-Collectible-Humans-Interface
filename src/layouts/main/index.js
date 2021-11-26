@@ -20,8 +20,8 @@ import {
       to: "/",
     },
     {
-      name: "Punks",
-      to: "/punks",
+      name: "Humans",
+      to: "/humans",
     },
   ];
   
@@ -58,9 +58,9 @@ import {
             />
             <HStack spacing={8} alignItems={"center"}>
               <Flex alignItems="center">
-                <Image src="./images/platzi.svg" width="80px" />
+                <Image src="./images/Logo.png" width="80px" />
                 <Heading size="md" color="purple" mt={0.2} ml={1}>
-                  Punks
+                  Humans
                 </Heading>
               </Flex>
               <HStack

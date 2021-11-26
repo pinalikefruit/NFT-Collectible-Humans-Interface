@@ -29,7 +29,7 @@ import {
           >
             <Text>
               © {new Date().getFullYear()} Made with curiosity
-              <Link ml={1} href="https://github.com/pinajmr/pina-punks-interface">
+              <Link ml={1} href="https://github.com/pinajmr/NFT-Collectible-Humans-interface">
                 Pina 
               </Link>
             </Text>

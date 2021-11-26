@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import PunkCard from "../../components/punk-card";
 import Loading from "../../components/loading";
 import RequestAccess from "../../components/request-access";
-import { usePinaPunksData } from "../../hooks/usePinaPunksData";
+import { useHumansData } from "../../hooks/useHumansData";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -27,7 +27,7 @@ const Punks = () => {
   const [validAddress, setValidAddress] = useState(true);
   const navigate = useNavigate();
   const { active, library } = useWeb3React();
-  const { punks, loading } = usePinaPunksData({
+  const { punks, loading } = useHumansData({
     owner: submitted && validAddress ? address : null,
   });
 
@@ -44,9 +44,9 @@ const Punks = () => {
       const isValid = library.utils.isAddress(address);
       setValidAddress(isValid);
       setSubmitted(true);
-      if (isValid) navigate(`/punks?address=${address}`);
+      if (isValid) navigate(`/humans?address=${address}`);
     } else {
-      navigate("/punks");
+      navigate("/humans");
     }
   };
 
@@ -83,7 +83,7 @@ const Punks = () => {
       ) : (
         <Grid templateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={6}>
           {punks.map(({ name, image, tokenId }) => (
-            <Link key={tokenId} to={`/punks/${tokenId}`}>
+            <Link key={tokenId} to={`/humans/${tokenId}`}>
               <PunkCard image={image} name={name} />
             </Link>
           ))}
