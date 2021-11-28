@@ -1,6 +1,6 @@
 const HumansArtifact = {
     address: {
-      80001: "0x7f553120e739880A10F153A01bC78d0eEC09693F",
+      80001: "0x481cc04ef52038B7b8157419D8F7e2D88A27e791",
     },
     abi: [
       {
